@@ -1,0 +1,28 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "public/index.php",
+            "use": "@vercel/php"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/public/index.php"
+        }
+    ],
+    "functions": {
+        "public/index.php": {
+            "runtime": "vercel-php@0.6.0"
+        }
+    },
+    "buildCommand": "composer install --no-dev --optimize-autoloader && php artisan key:generate && php artisan migrate --force && npm install && npm run build",
+    "outputDirectory": "public",
+    "env": {
+        "APP_ENV": "production",
+        "APP_KEY": "@laravel-app-key",
+        "DB_CONNECTION": "sqlite",
+        "DB_DATABASE": "/tmp/database.sqlite"
+    }
+}
