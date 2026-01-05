@@ -1,0 +1,62 @@
+# ============================================
+# Docker Ignore File
+# ============================================
+
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node modules (we build separately)
+node_modules/
+
+# Laravel
+vendor/ (will be built from composer.lock)
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+storage/logs/*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Testing
+.phpunit.cache
+vendor/bin/phpunit
+
+# Editor directories and files
+.project
+*.sublime-*
+.cache/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Build outputs
+public/build/
+public/hot/
+build/
+
+# Vite
+*.local
+
+# Misc
+*.sql
+*.sqlite
+.DS_Store
+

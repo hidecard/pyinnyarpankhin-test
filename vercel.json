@@ -3,26 +3,34 @@
     "builds": [
         {
             "src": "public/index.php",
-            "use": "@vercel/php"
+            "use": "vercel-php@0.6.0"
+        },
+        {
+            "src": "public/build/**",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
+        {
+            "src": "/build/(.*)",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
         {
             "src": "/(.*)",
             "dest": "/public/index.php"
         }
     ],
-    "functions": {
-        "public/index.php": {
-            "runtime": "vercel-php@0.6.0"
-        }
-    },
     "buildCommand": "composer install --no-dev --optimize-autoloader && php artisan key:generate && php artisan migrate --force && npm install && npm run build",
     "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_KEY": "@laravel-app-key",
+        "APP_DEBUG": "false",
         "DB_CONNECTION": "sqlite",
         "DB_DATABASE": "/tmp/database.sqlite"
-    }
+    },
+    "framework": "laravel"
 }
+
